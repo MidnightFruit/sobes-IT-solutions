@@ -10,6 +10,10 @@ class Car(models.Model):
     updated_at = models.DateTimeField(verbose_name="дата и время последнего обновления записи", auto_now=True)
     owner = models.ForeignKey(User, verbose_name="пользователь, который создал запись", on_delete=models.CASCADE)
     
+    class Meta:
+        verbose_name = 'автомобиль'
+        verbose_name_plural = 'автомобили'
+
 
 class Comment(models.Model):
     content = models.TextField(verbose_name="содержание комментария")
@@ -17,3 +21,6 @@ class Comment(models.Model):
     car = models.ForeignKey(Car, verbose_name="автомобиль к которому оставлен комментарий", on_delete=models.CASCADE)
     author = models.ForeignKey(User, verbose_name="автор комментария", on_delete=models.CASCADE)
     
+    class Meta:
+        verbose_name = 'комментарий'
+        verbose_name_plural = 'комментарии'
