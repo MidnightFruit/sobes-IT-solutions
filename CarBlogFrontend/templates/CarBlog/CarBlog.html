@@ -1,0 +1,30 @@
+{% extends "CarBlog/index.html" %}
+
+{% block content %}
+<body>
+    <div class="mx-auto row">
+        {% for car_item in car %}
+            <div class="col-md-4 text-center">
+                <div class="card mb-4 box-shadow">
+                    <div class="card-header">
+                        <h4 class="my-0 font-weight-normal">{{ car_item.make }} - {{ car_item.model }}</h4>
+                    </div>
+                    <div class="card-body">
+                        <p>
+                            {{ car_item.description|truncatechars:100 }}
+                        </p>
+                        {% if user.is_authenticated %}
+                            <a type="button" class="btn btn-lg btn-block btn-outline-primary" href={% url "catalog:product" pk=product.pk %} >Подробнее</a>
+                            {% if user.email == car_item.owner.email %}
+                                <a type="button" class="btn btn-warning" href={% url "catalog:update_product" pk=car_item.pk %} >Изменить</a>
+                                <a type="button" class="btn btn-danger" href="{% url "catalog:delete_product" car_item.pk%}"> Удалить</a>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+
+{% endblock %}

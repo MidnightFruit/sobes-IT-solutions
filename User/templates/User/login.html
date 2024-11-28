@@ -1,0 +1,25 @@
+{% extends "CarBlog/index.html" %}
+
+{% block content %}
+
+<body>
+
+    <div align="center">
+        <form class="row" method="post" enctype="multipart/form-data">
+            <div class="catd-header">
+                <h3 class="card-title">Вход</h3>
+            </div>
+            <div class="card-body">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-success"> Войти </button>
+            </div>
+
+        </form>
+    </div>
+
+
+</body>
+
+
+{% endblock %}
