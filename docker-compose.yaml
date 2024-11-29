@@ -2,11 +2,6 @@ version: "3"
 
 
 services:
-  redis:
-    image: redis:latest
-    restart: on-failure
-    expose:
-      - "6379"
   db:
     image: postgres:16-alpine
     restart: on-failure
@@ -27,8 +22,8 @@ services:
     build: .
     tty: true
     ports:
-      - "8000:8000"
-    command: sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+      - "80:80"
+    command: sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:80"
     depends_on:
       db:
         condition: service_healthy
@@ -37,33 +32,7 @@ services:
     env_file:
       - .env
 
-  celery:
-    build: .
-    tty: true
-    command: celery -A config worker -l INFO
-    restart: on-failure
-    volumes:
-      - .:/app
-    depends_on:
-      - redis
-      - app
-      - db
-    env_file:
-      - .env
 
-  celery-beat:
-    build: .
-    tty: true
-    command: celery -A config beat -l INFO
-    restart: on-failure
-    volumes:
-      - .:/app
-    depends_on:
-      - redis
-      - app
-      - db
-    env_file:
-      - .env
 
 volumes:
   pg_data:
