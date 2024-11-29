@@ -1,0 +1,8 @@
+{% extends "CarBlog/index.html" %}
+
+{% block content %}
+    <form action="{% url 'user:logout' %}" method="post">
+        {% csrf_token %} 
+        <button type="submit">Logout</button>
+    </form>
+{% endblock %}

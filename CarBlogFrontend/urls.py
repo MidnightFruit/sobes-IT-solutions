@@ -1,13 +1,14 @@
 from django.urls import path
-from CarBlogFrontend.views import car_list, car_create
+from CarBlogFrontend.views import CarListView, CarCreateView, CarTemplateView, CarUpdateView, CarDeleteView
 from CarBlogFrontend.apps import CarblogfrontendConfig
 
 
 app_name = CarblogfrontendConfig.name
 
 urlpatterns = [
-    path("main/", car_list, name="main"),
-    path("create_car/", car_create, name="create_car"),
-    #path("update_car/<int:pk>", car_update, name="update_car"),
-    #path("delete_car/<int:pk>", car_delete, name="delete_car"),
+    path("main/", CarListView.as_view(), name="main"),
+    path("create_car/", CarCreateView.as_view(), name="create_car"),
+    path("car/<int:pk>/", CarTemplateView.as_view(), name="car"),
+    path("update_car/<int:pk>", CarUpdateView.as_view(), name="update_car"),
+    path("delete_car/<int:pk>", CarDeleteView.as_view(), name="delete_car"), 
 ]

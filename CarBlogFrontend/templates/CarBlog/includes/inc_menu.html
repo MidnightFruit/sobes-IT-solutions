@@ -11,7 +11,10 @@
             <a class="nav-link" href={% url "carblog:create_car" %}>Добавить автомобиль</a>
           </li>
             <li class="nav-item">
-                <a class="nav-link" href={% url "user:logout" %}>Выйти</a>
+              <form method="post" action="{% url 'user:logout' %}">
+                {% csrf_token %}
+                <button class="nav-link" >Выйти</a>
+              </form>
             </li>
           {% else %}
             <li class="nav-item">
