@@ -5,7 +5,7 @@
 
 ```docker-compose up -d --build```
 
-В файле [docker-compose.yaml](https://github.com/MidnightFruit/HabitFormationControl/blob/c8f36977f5e041d998d6f93c25f0f1e1291a3fa4/docker-compose.yaml) прописаны настройки для контейнеров.
+В файле [docker-compose.yaml](https://github.com/MidnightFruit/sobes-IT-solutions/blob/1799ca489b46708e0dbc4dc53c4cc7f2d4fb1d06/docker-compose.yaml) прописаны настройки для контейнеров.
 
 Для корректной работы требуется установить следующие переменные окружения в файле ".env". В таблице перечислены все требуемые переменные окружения.
 
