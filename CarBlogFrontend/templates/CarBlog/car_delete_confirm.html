@@ -1,0 +1,24 @@
+{% extends "CarBlog/index.html" %}
+
+{% block content %}
+
+<div class="col-12 text-center">
+    <div class="row">
+        <div align="center"> 
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-body">
+                        <form method="post">
+                            {% csrf_token %}
+                            <p>Удалить авто {{ object.make }} - {{ object.model }}?</p>
+                            <button class="btn btn-danger" type="submit">Подтвердить</button>
+                            <a href={% url "carblog:main" %} class="btn btn-light">Отмена</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

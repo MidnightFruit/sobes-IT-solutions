@@ -12,6 +12,9 @@ from User.permissions import IsOwner
 
 
 class CarViewSet(viewsets.ModelViewSet):
+    """
+    Вьюсет реализующий CRUD для модели авто.
+    """
     queryset = Car.objects.all()
     serializer_class = CarSerializer
 
@@ -33,6 +36,9 @@ class CarViewSet(viewsets.ModelViewSet):
         return [permission() for permission in self.permission_classes]
 
 class CommentView(GenericAPIView):
+    """
+    Контролеры для создания и получения комментариев.
+    """
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
 
@@ -53,23 +59,4 @@ class CommentView(GenericAPIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-#class CommentCreateAPIView(CreateAPIView):
-#    queryset = Comment.objects.all()
-#    serializer_class = CommentSerializer
-#    permission_classes = [IsAuthenticated]
-#
-#    def perform_create(self, serializer):
-#        car_pk = self.kwargs.get('car_id')
-#        car_item = get_object_or_404(Car, pk = car_pk)
-#        serializer.save(author=self.request.user, car=car_item)
-#
-#class CommentListAPIView(ListAPIView):
-#    queryset = Comment.objects.all()
-#    serializer_class = CommentSerializer
-#
-#    def get_queryset(self):
-#        car_pk = self.kwargs.get('car_id')
-#        car_item = get_object_or_404(Car, pk = car_pk)
-#        data = Comment.objects.get(car=car_item)
-#        return data
     

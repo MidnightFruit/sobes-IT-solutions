@@ -3,7 +3,7 @@
 {% block content %}
 <body>
     <div class="mx-auto row">
-        {% for car_item in car %}
+        {% for car_item in object_list %}
             <div class="col-md-4 text-center">
                 <div class="card mb-4 box-shadow">
                     <div class="card-header">
@@ -13,11 +13,11 @@
                         <p>
                             {{ car_item.description|truncatechars:100 }}
                         </p>
+                        <a type="button" class="btn btn-lg btn-block btn-outline-primary" href={% url "carblog:car" pk=car_item.pk %} >Подробнее</a>
                         {% if user.is_authenticated %}
-                            <a type="button" class="btn btn-lg btn-block btn-outline-primary" href={% url "catalog:product" pk=product.pk %} >Подробнее</a>
                             {% if user.email == car_item.owner.email %}
-                                <a type="button" class="btn btn-warning" href={% url "catalog:update_product" pk=car_item.pk %} >Изменить</a>
-                                <a type="button" class="btn btn-danger" href="{% url "catalog:delete_product" car_item.pk%}"> Удалить</a>
+                                <a type="button" class="btn btn-warning" href={% url "carblog:update_car" pk=car_item.pk %} >Изменить</a>
+                                <a type="button" class="btn btn-danger" href={% url "carblog:delete_car" pk=car_item.pk %} >Удалить</a>
                             {% endif %}
                         {% endif %}
                     </div>
